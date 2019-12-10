@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <a href="/laptops"><title>Comments macgee</title></a>
+        <link href="../html/main.css" rel="stylesheet" type="text/css" />
+        <style>
+            .grid-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: 1fr 1fr 1fr 1fr;
+                grid-template-areas: "side_menu mid right_side_menu";
+            }
+            .side_menu { grid-area: side_menu; }
+    
+            .mid { grid-area: mid; }
+    
+            .right_side_menu { grid-area: right_side_menu; }
+
+            table, td {      
+                border-collapse: collapse;
+            }
+            td {
+                padding: 15px;
+                text-align: left;
+            }
+                table#t01 tr:nth-child(even) {
+                background-color: #eee;
+            }
+                table#t01 tr:nth-child(odd) {
+                background-color: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <img src="../images/Swing.gif" height="100px" style="vertical-align:middle"> <span class="title">Commenting</span>
+        </div>
+        <h1>Time to comment</h1>
+        <hr>
+        <div class="grid-container">
+            <div class="side_menu"></div>
+            <div class="mid">
+                <a style="font-size: 18pt;">Schrijf een comment:</a>
+                <br><br>
+                <form action="/" method="POST">
+                    <textarea type="message" name="comment" rows="10" cols="30"></textarea>
+                    <br><br>
+                    <input type="submit" value="Submit">
+                </form> 
+            </div>
+            <div style="font-size: 18pt" class="right_side_menu">
+                
+                <a style="font-size: 18pt;">Oude Comments:</a><br>
+                {{range .}}
+                    <a style="text-decoration:none">
+                        <span style="color:rgb(0, 0, 0)" class="product"><br>{{.Index}}. {{.Time}}</span>
+                        <span style="color:rgb(0, 0, 0)" class="price"><br>{{.Comment}}</span>
+                    </a>
+                    <br><br>
+                {{end}}
+            </div>
+        </div>
+    </body>
+</html>
