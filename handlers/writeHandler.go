@@ -45,11 +45,18 @@ func HandComment(response http.ResponseWriter, request *http.Request) {
 			tag = request.FormValue("tag")
 		}
 
+		var commentSt string
+		if request.FormValue("commenth") == "" {
+			commentSt = request.FormValue("commentb")
+		} else {
+			commentSt = request.FormValue("commenth") + "\n" + request.FormValue("commentb")
+		}
+
 		comment := Comment{
 			Index:   len(comments),
 			Tag:     tag,
 			Time:    (time.Now()).Format(time.RFC1123),
-			Comment: request.FormValue("comment"),
+			Comment: commentSt,
 		}
 
 		err2 := repository.SaveComment(comment)
