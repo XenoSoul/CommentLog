@@ -40,24 +40,43 @@
             <div class="side_menu"></div>
             <div class="mid">
                 <a style="font-size: 18pt;">Schrijf een comment:</a>
-                <br><br>
+                <br>
                 <form action="/" method="POST">
-                    <textarea type="message" name="comment" rows="10" cols="30"></textarea>
-                    <br><br>
+                    Tag:<br>
+                    <select name="tag" id="t1" onchange="changeFuc()">
+                        {{range .Tag}}
+                            <option value="{{.Tag}}">{{.Tag}}</option>
+                        {{end}}
+                    </select> <br>
+                    <input type="text" name="tagn" id="t2" value="{{.Recent}}"><br>
+                    Comment:<br>
+                    <input type="text" name="comment" ><br>
+                    <textarea type="message" name="comment" rows="40" cols="160" ></textarea>
+                    <br>
                     <input type="submit" value="Submit">
                 </form> 
             </div>
             <div style="font-size: 18pt" class="right_side_menu">
-                
-                <a style="font-size: 18pt;">Oude Comments:</a><br>
-                {{range .}}
+                <a style="font-size: 18pt;">Oude Comments: <a href="/raw"><button>Export RAW</button></a></a><br>
+                {{range .Comment}}
                     <a style="text-decoration:none">
-                        <span style="color:rgb(0, 0, 0)" class="product"><br>{{.Index}}. {{.Time}}</span>
+                        <span style="color:rgb(0, 0, 0)" class="product"><br>{{.Index}}. {{.Time}}<br><b>Tag: {{.Tag}}</b></span>
                         <span style="color:rgb(0, 0, 0)" class="price"><br>{{.Comment}}</span>
                     </a>
-                    <br><br>
+                    <form action="/delete" method="POST">
+                        <input type="hidden" name="time" value="{{.Time}}">
+                        <input type="submit" value="Delete">
+                    </form>
                 {{end}}
             </div>
         </div>
+
+        <script>
+            function changeFuc() {
+                v = document.getElementById("t1").value;
+                document.getElementById("t2").value = v;
+            }
+        </script>
+
     </body>
 </html>

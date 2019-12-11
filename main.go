@@ -12,6 +12,7 @@ func main() {
 	log.Println("Starting app")
 
 	// http.HandleFunc listens to a GET request and handles it.
+	http.HandleFunc("/delete", handlers.HandDelete)
 	http.HandleFunc("/", handlers.HandComment)
 
 	// http.Handle allow the use of files from the spesified destination within your code.
