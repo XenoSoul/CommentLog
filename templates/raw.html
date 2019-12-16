@@ -1,0 +1,11 @@
+<html>
+    <head>
+        <a href="/laptops"><title>Comments macgee - RAW</title></a>
+        <link href="../html/main.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        {{range .}}
+            <b>{{.Index}}. {{.Time}}:</b> <br> {{.Comment}}<br>
+        {{end}}
+    </body>
+</html>
